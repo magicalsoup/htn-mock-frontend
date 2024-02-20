@@ -18,11 +18,12 @@ import { User } from "@/session/lib"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { DEMO_USERNAME, DEMO_PASSWORD } from "@/lib/constants"
+import { Label } from "@/components/ui/label"
 
 
 const formSchema = z.object({
-    username: z.string().min(2, {
-      message: "Username must be at least 2 characters.",
+    username: z.string().min(1, {
+      message: "Username must be at least 1 character.",
     }),
     password: z.string()
   })
@@ -31,6 +32,8 @@ export default function Login() {
 
     const { session, login, isLoading } = useSession()
     const [isLoggingIn, toggleIsLoggingIn] = useState(false);
+    const [showLoginError, toggleShowLoginError] = useState(false)
+
     const router = useRouter()
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -40,7 +43,6 @@ export default function Login() {
           password: "",
         },
     })
-
      
     // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -53,13 +55,13 @@ export default function Login() {
         }
 
         toggleIsLoggingIn(true)
-
+        
         const response = await login(user)
 
         if (!response.isLoggedIn) {
             toggleIsLoggingIn(false)
-            console.log("incorrect username or password")
-        }
+            toggleShowLoginError(true)
+        } 
         
     }
 
@@ -77,7 +79,7 @@ export default function Login() {
                         <h1 className="text-white font-bold text-4xl">
                             Log into your account
                         </h1>
-                        <p className="text-slate-200">Procrasination is no more! It's time to hack! Take home the W!</p>
+                        <p className="text-slate-200">Procrasinate no more! It's time to hack! Take home the W!</p>
                     </div>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} method="POST" className="space-y-8">
@@ -87,8 +89,8 @@ export default function Login() {
                             render={({ field }) => (
                                 <FormItem>
                                     <FormLabel className="text-slate-400">Username</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="username" {...field} />
+                                    <FormControl onChange={() => toggleShowLoginError(false)}>
+                                        <Input placeholder="username" {...field}/>
                                     </FormControl>
                                     <FormControl></FormControl>
                                     <FormMessage />
@@ -100,20 +102,23 @@ export default function Login() {
                                 render={({ field }) => (
                                     <FormItem>
                                         <FormLabel className="text-slate-400">Password</FormLabel>
-                                        <FormControl>
-                                            <Input type="password" placeholder="******" {...field} />
+                                        <FormControl onChange={() => toggleShowLoginError(false)}>
+                                            <Input type="password" placeholder="******" {...field}/>
                                         </FormControl>
                                         <FormControl></FormControl>
                                         <FormMessage />
                                     </FormItem>
                             )}/>
-                            {!isLoggingIn && <Button type="submit" className="bg-gradient-to-r from-cyan-500 to-amber-300 w-full py-6 text-lg font-bold">Log in</Button>}
-                            {isLoggingIn && <Button className="bg-gradient-to-r from-cyan-500 to-amber-300 w-full py-6 text-lg font-bold"disabled>
-                                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-                                    Logging you in
-                                </Button>}
+                            <div className="flex flex-col gap-y-2">
+                                {showLoginError && <Label className="text-destructive">Incorrect username or password</Label>}
+                                {!isLoggingIn && <Button type="submit" className="bg-gradient-to-r from-cyan-500 to-amber-300 w-full py-6 text-lg font-bold">Log in</Button>}
+                                {isLoggingIn && <Button className="bg-gradient-to-r from-cyan-500 to-amber-300 w-full py-6 text-lg font-bold"disabled>
+                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                                        Logging you in
+                                    </Button>}
+                            </div>
                             <div className="text-white flex flex-col">
-                                <span>DEMO username is {DEMO_USERNAME}</span>
+                                <span>DEMO Username is {DEMO_USERNAME}</span>
                                 <span>DEMO Password is {DEMO_PASSWORD}</span>
                             </div>
                         </form>

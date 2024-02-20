@@ -8,8 +8,11 @@ import {
     Collapsible,
     CollapsibleContent,
   } from "@/components/ui/collapsible"
-import { useEventsState } from "../events-context/EventContext";
+import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
 import { ChevronsUpDown } from "lucide-react";
+import { X } from "lucide-react"
+import { EventContextActionType } from "@/schema/events-context-types";
+import { formatTimeInterval } from "@/lib/format";
 
 export function Profile() {
     const { session, isLoading, logout } = useSession()
@@ -18,6 +21,7 @@ export function Profile() {
     
     const router = useRouter()
     const eventsState = useEventsState()
+    const eventsDispatch = useEventsDispatch()
 
     useEffect(() => {
         if (session.isLoggedIn) {
@@ -72,8 +76,18 @@ export function Profile() {
                 <Collapsible open={openCollapsible} onOpenChange={toggleOpenCollapsible}>
                     <CollapsibleContent className="space-y-2">
                     {eventsState.interestedEvents.map((event, id:number) => {
-                        return <div key={id} className="rounded-md border px-4 py-3 text-sm">
-                            {event.name}
+                        return <div key={id} className="flex justify-between items-center rounded-md border px-4 py-3 text-sm">
+                            <div className="flex flex-col">
+                                <span className="text-xs font-bold">{event.name}</span>
+                                <span className="text-xs">{formatTimeInterval(event.start_time, event.end_time)}</span>
+                            </div>
+                            <Button variant="outline" onClick={() => {
+                                    eventsDispatch({
+                                        type: EventContextActionType.DESELECT_EVENT_AS_INTERESTED,
+                                        event: event
+                                    })}}>
+                                <X/>
+                            </Button>
                         </div>
                     })}
                     </CollapsibleContent>

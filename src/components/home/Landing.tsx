@@ -66,7 +66,7 @@ export function Landing () {
             <div className="flex flex-col py-32 px-32 gap-y-8"> 
                 <div className="flex gap-x-16">
                     <DayTabs eventDays={eventDays} startDay={startDay}/>
-                    <Profile/>
+                    <Profile />
                 </div>
                 
             </div>

@@ -2,14 +2,12 @@ import { NextRequest } from "next/server";
 import { cookies } from "next/headers";
 import { getIronSession } from "iron-session";
 import { defaultSession, sessionOptions } from "@/session/lib";
-import { sleep, SessionData } from "@/session/lib";
+import { SessionData } from "@/session/lib";
 import { DEMO_PASSWORD, DEMO_USERNAME } from "@/lib/constants";
 
 // login
 export async function POST(request: NextRequest) {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
-
-//   console.log("[receieved request]", request)
 
   const { username = "No username", password = "" } = (await request.json()) as {
     username: string;
@@ -17,7 +15,7 @@ export async function POST(request: NextRequest) {
   };
 
   
-  if (username === DEMO_USERNAME && password == DEMO_PASSWORD) { // TODO change
+  if (username === DEMO_USERNAME && password == DEMO_PASSWORD) { 
     session.isLoggedIn = true;
     session.username = username;
     await session.save();
@@ -31,9 +29,6 @@ export async function POST(request: NextRequest) {
 // read session
 export async function GET() {
   const session = await getIronSession<SessionData>(cookies(), sessionOptions);
-
-  // simulate looking up the user in db
-  await sleep(250);
 
   if (session.isLoggedIn !== true) {
     return Response.json(defaultSession);
