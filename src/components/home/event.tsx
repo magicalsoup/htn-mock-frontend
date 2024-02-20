@@ -1,6 +1,6 @@
 "use client"
 
-import { TEvent } from "@/app/schema/types";
+import { TEvent } from "@/schema/types";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { formatEventType, formatTimeInterval } from "@/lib/format";
 import { Badge } from "../ui/badge";

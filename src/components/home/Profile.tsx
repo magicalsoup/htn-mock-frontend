@@ -30,8 +30,6 @@ export function Profile() {
         }
     }, [session, toggleLoggingOut])
 
-
-
     if (!session.isLoggedIn) {
         return (
             <div className="">
@@ -57,8 +55,8 @@ export function Profile() {
                     <Label>{session.username}</Label>
                 </div>
                 <Button onClick={() => {
-                    logout()
                     toggleLoggingOut(true)
+                    logout()
                 }}>Log out</Button>
             </div>
             <div className="flex flex-col">

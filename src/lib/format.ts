@@ -1,4 +1,4 @@
-import { TEventType } from "@/app/schema/types";
+import { TEventType } from "@/schema/types";
 
 const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["Janurary", "Februrary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]

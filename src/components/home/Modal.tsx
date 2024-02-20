@@ -9,7 +9,7 @@ import {
   } from "@/components/ui/dialog"
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast"
-import { TEvent } from "@/app/schema/types";
+import { TEvent } from "@/schema/types";
 import {
     Collapsible,
     CollapsibleContent,
@@ -20,7 +20,7 @@ import { Button } from "../ui/button";
 import { getRelatedEvents } from "@/lib/event-data";
 import useSession from "@/session/use-session";
 import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
-import { EventContextActionType } from "@/app/schema/events-context-types";
+import { EventContextActionType } from "@/schema/events-context-types";
 import { formatEventType, formatTimeInterval } from "@/lib/format";
 import { ToastAction } from "@radix-ui/react-toast";
 

@@ -20,9 +20,6 @@ export async function POST(request: NextRequest) {
     session.isLoggedIn = true;
     session.username = username;
     await session.save();
-  
-    // simulate looking up the user in db
-    await sleep(250);
   } else {
     return Response.json({error: 'Incorrect username or password', ...session})
   }

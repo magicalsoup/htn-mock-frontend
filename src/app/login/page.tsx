@@ -69,7 +69,7 @@ export default function Login() {
     }, [session, isLoading])
 
     return (
-        <div className="bg-slate-800 h-screen w-screen">
+        <div className="bg-slate-800 h-full w-screen">
             <div className="flex flex-col justify-center items-center py-32 px-32">
                 <div className="flex flex-col w-[480px] gap-y-14"> {/*login box*/}
                     <div className="flex flex-col gap-y-4">
@@ -106,11 +106,15 @@ export default function Login() {
                                         <FormMessage />
                                     </FormItem>
                             )}/>
-                            {!isLoggingIn && <Button type="submit" className="w-full py-6 text-lg font-bold">Log in</Button>}
-                            {isLoggingIn && <Button className="w-full py-6 text-lg font-bold"disabled>
+                            {!isLoggingIn && <Button type="submit" className="bg-gradient-to-r from-cyan-500 to-amber-300 w-full py-6 text-lg font-bold">Log in</Button>}
+                            {isLoggingIn && <Button className="bg-gradient-to-r from-cyan-500 to-amber-300 w-full py-6 text-lg font-bold"disabled>
                                 <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                                     Logging you in
                                 </Button>}
+                            <div className="text-white flex flex-col">
+                                <span>DEMO username is admin</span>
+                                <span>DEMO Password is admin123</span>
+                            </div>
                         </form>
                     </Form>
                 </div>

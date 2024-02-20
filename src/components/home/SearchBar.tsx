@@ -3,7 +3,7 @@
 import { Input } from "@/components/ui/input"
 import { useEffect, useState } from "react";
 import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
-import { EventContextActionType } from "@/app/schema/events-context-types";
+import { EventContextActionType } from "@/schema/events-context-types";
 import { formatEventType } from "@/lib/format";
 
 export function SearchBar() {

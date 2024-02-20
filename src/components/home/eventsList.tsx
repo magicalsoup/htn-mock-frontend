@@ -1,6 +1,6 @@
 "use client"
 
-import { TEvent } from "@/app/schema/types";
+import { TEvent } from "@/schema/types";
 import { getDayOfWeek } from "@/lib/format";
 import { Event } from "@/components/home/Event"
 
@@ -9,7 +9,7 @@ import { useEventsDispatch, useEventsState } from "../events-context/EventContex
 import useSession from "@/session/use-session";
 import { getRelatedEvents } from "@/lib/event-data";
 import { Modal } from "@/components/home/Modal";
-import { EventContextActionType } from "@/app/schema/events-context-types";
+import { EventContextActionType } from "@/schema/events-context-types";
 
 
 export function EventsList({day} : {day: string;}) {

@@ -1,16 +1,14 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { TEvent } from "@/app/schema/types"
+import { TEvent } from "@/schema/types"
 import { getDayOfWeek } from "@/lib/format"
 import { DayTabs } from "@/components/home/DayTabs"
 import useSession from "@/session/use-session"
-import { Button } from "@/components/ui/button"
-import { SearchBar } from "@/components/home/SearchBar"
 import { useEventsDispatch, useEventsState } from "../events-context/EventContext"
-import { EventContextActionType } from "@/app/schema/events-context-types"
-import { useRouter } from "next/navigation"
+import { EventContextActionType } from "@/schema/events-context-types"
 import { Profile } from "./Profile"
+import { Loading } from "./Loading"
 
 const API_ENDPOINT = `https://api.hackthenorth.com/v3/`
 
@@ -59,12 +57,8 @@ export function Landing () {
         setStartDay(newEventDays[0])
     }, [events])
 
-
-
     if (isLoading) {
-      return (
-        <div>Loading</div>
-      )
+        return <Loading/>
     }
 
     return (

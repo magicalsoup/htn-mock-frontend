@@ -1,4 +1,4 @@
-import { EventContextActionType, EventsContextAction, EventsContextType } from "@/app/schema/events-context-types";
+import { EventContextActionType, EventsContextAction, EventsContextType } from "@/schema/events-context-types";
 import React, { Dispatch, createContext, useContext, useReducer } from "react";
 
 

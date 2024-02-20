@@ -1,5 +1,5 @@
 // import { API_ENDPOINT } from "./metadata";
-import { TEvent } from "@/app/schema/types";
+import { TEvent } from "@/schema/types";
 
 const API_ENDPOINT = `https://api.hackthenorth.com/v3/`
 

@@ -1,18 +1,13 @@
 "use client"
 
-import { TEvent } from "@/app/schema/types"
+import { TEvent } from "@/schema/types"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { EventsList } from "@/components/home/EventsList"
-
-import { useEffect, useState } from "react"
-import { useEventsState } from "../events-context/EventContext"
 import { SearchBar } from "./SearchBar"
+
 
 export function DayTabs({ eventDays, startDay } : 
     { eventDays: string[]; startDay: string }) {
-
-    const eventsState = useEventsState()
-    const events: TEvent[] = eventsState.events
     
     return (
         <div className="flex flex-col gap-y-8">
