@@ -46,7 +46,7 @@ export function Profile() {
 
     return (
         <div className="flex flex-col w-96 gap-y-6">
-            <div className="flex flex-col justify-center p-4 gap-y-4 h-36 outline outline-1 outline-border">
+            <div className="flex flex-col justify-center p-4 gap-y-4 h-36 outline outline-1 outline-border rounded-md">
                 <div className="flex gap-x-4 items-center">
                     <Avatar>
                         <AvatarImage src="https://my.hackthenorth.com/static/media/logo.fdff3c11.svg"/>

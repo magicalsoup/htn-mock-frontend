@@ -12,8 +12,8 @@ export function Event({event} : {event: TEvent}) {
                 <CardHeader>
                     <div className="flex gap-x-4">
                         <CardTitle> {event.name}</CardTitle>
-                        <Badge className={`${eventType == 'activity'? 'bg-activity' : (eventType === 'workshop'? 
-                            'bg-workshop' : 'bg-techtalk')} text-white`} variant="outline">{eventType}</Badge>
+                        <Badge className={`${eventType == 'activity'? 'bg-activity bordeer-activity' : (eventType === 'workshop'? 
+                            'border-workshop bg-workshop' : 'border-techtalk bg-techtalk')} text-white`} variant="outline">{eventType}</Badge>
                     </div>
                     <CardDescription>{formatTimeInterval(event.start_time, event.end_time)}</CardDescription>
                 </CardHeader>

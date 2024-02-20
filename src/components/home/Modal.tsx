@@ -10,13 +10,13 @@ import {
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast"
 import { TEvent } from "@/schema/types";
-import {
-    Collapsible,
-    CollapsibleContent,
-  } from "@/components/ui/collapsible"
+// import {
+//     Collapsible,
+//     CollapsibleContent,
+//   } from "@/components/ui/collapsible"
 
 import { Badge } from "@/components/ui/badge"
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import { getRelatedEvents } from "@/lib/event-data";
 import useSession from "@/session/use-session";
 import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
@@ -55,54 +55,67 @@ export function Modal ({openModal, setOpenModal} :
         const eventType = formatEventType(currentEvent.event_type)
         return (
             <Dialog open={openModal} onOpenChange={setOpenModal}>
-                <DialogContent className="sm:max-w-xl p-12">
+                <DialogContent className="gap-y-10 sm:max-w-2xl pt-12 px-8">
                     <DialogHeader>
-                        <div className="flex gap-x-4">
-                            <DialogTitle className="">{currentEvent.name}</DialogTitle>
-                            <Badge className={`${eventType == 'activity'? 'bg-activity' : (eventType === 'workshop'? 
-                            'bg-workshop' : 'bg-techtalk')} text-white`} variant="outline">{eventType}</Badge>
+                        <div className="flex flex-col">
+                            <div className="flex gap-x-4">
+                                <DialogTitle className="">{currentEvent.name}</DialogTitle>
+                                <Badge className={`${eventType == 'activity'? 'bg-activity bordeer-activity' : (eventType === 'workshop'? 
+                                'border-workshop bg-workshop' : 'border-techtalk bg-techtalk')} text-white`} variant="outline">{eventType}</Badge>
+                            </div>
+                            <div className="flex gap-x-2">
+                                {/* {currentEvent.speakers.length > 0 && 
+                                    <span>
+                                        Speakers: {currentEvent.speakers.map((speaker, id) => <span key={id}>{speaker.name}</span>)}
+                                    </span>} */}
+                                {/* <Separator orientation="vertical"/> */}
+                                <span>{formatTimeInterval(currentEvent.start_time, currentEvent.end_time)}</span>
+                            </div>
                         </div>
                     </DialogHeader>
                     <DialogDescription>
                         {currentEvent?.description}
                     </DialogDescription>
-                    <Collapsible open={true}>
-                        <h1 className="">You should also check out </h1>
-                        <CollapsibleContent className="flex flex-col items-start">
+                    <div className="flex flex-col gap-y-1">
+                        <h1 className="font-medium">You should also check out:</h1>
+                        <div className="flex flex-col items-start gap-y-1">
                             {relatedEvents?.map((event, id: number) => {
-                                return <Button variant="link" className="p-0" key={id} onClick={() => {
+                                return <Button variant="link" className="p-0.5 h-fit" key={id} onClick={() => {
                                     setOpenModal(true)
                                     eventsDispatch({
                                         type: EventContextActionType.SET_CURRENT_EVENT,
                                         event: event
-                                    })
+                                    })  
                                 }}>{event.name}</Button>
                             })}
-                        </CollapsibleContent>
-                    </Collapsible>
+                        </div>
+                    </div>
                     <DialogFooter>
-                        <Button
-                            onClick={() => {
-                                toast({
-                                    title: 'Event has been saved',
-                                    description: `From ${formatTimeInterval(currentEvent.start_time, currentEvent?.end_time)}`,
-                                    action: (
-                                        <ToastAction type="button" className="bg-primary text-white font-bold rounded-md p-2" onClick={() => {
-                                            eventsDispatch({
-                                                type: EventContextActionType.DESELECT_EVENT_AS_INTERESTED,
-                                                event: currentEvent
-                                            })}} altText="Goto schedule to undo">
-                                            Undo
-                                        </ToastAction>
-                                    ),
-                                    duration: 1500
-                                })
-                                eventsDispatch({
-                                    type: EventContextActionType.SELECT_EVENT_AS_INTERESTED,
-                                    event: currentEvent
-                                })
-                            }}
-                        >I'm Interested!</Button>
+                        <Button variant="secondary" className="border border-border  hover:bg-slate-200" onClick={() => {
+                            toast({
+                                title: 'Event has been saved',
+                                description: `From ${formatTimeInterval(currentEvent.start_time, currentEvent?.end_time)}`,
+                                action: (
+                                    <ToastAction type="button" className="bg-primary text-white font-bold rounded-md p-2" onClick={() => {
+                                        eventsDispatch({
+                                            type: EventContextActionType.DESELECT_EVENT_AS_INTERESTED,
+                                            event: currentEvent
+                                        })}} altText="Goto schedule to undo">
+                                        Undo
+                                    </ToastAction>
+                                ),
+                                duration: 1500
+                            })
+                            eventsDispatch({
+                                type: EventContextActionType.SELECT_EVENT_AS_INTERESTED,
+                                event: currentEvent
+                            })
+                        }}>I'm Interested!</Button>
+                        <Button onClick={()=> {
+                            window.open(session.isLoggedIn? currentEvent.private_url : currentEvent.public_url, '_blank')
+                        }}>
+                            Link
+                        </Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>

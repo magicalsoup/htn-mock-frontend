@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { getIronSession } from "iron-session";
 import { defaultSession, sessionOptions } from "@/session/lib";
 import { sleep, SessionData } from "@/session/lib";
+import { DEMO_PASSWORD, DEMO_USERNAME } from "@/lib/constants";
 
 // login
 export async function POST(request: NextRequest) {
@@ -16,7 +17,7 @@ export async function POST(request: NextRequest) {
   };
 
   
-  if (username === "admin" && password == "admin123") { // TODO change
+  if (username === DEMO_USERNAME && password == DEMO_PASSWORD) { // TODO change
     session.isLoggedIn = true;
     session.username = username;
     await session.save();

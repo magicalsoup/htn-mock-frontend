@@ -15,9 +15,10 @@ import {
 import { Input } from "@/components/ui/input"
 import useSession from "@/session/use-session"
 import { User } from "@/session/lib"
-
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
+import { DEMO_USERNAME, DEMO_PASSWORD } from "@/lib/constants"
+
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -100,7 +101,7 @@ export default function Login() {
                                     <FormItem>
                                         <FormLabel className="text-slate-400">Password</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="password" {...field} />
+                                            <Input type="password" placeholder="******" {...field} />
                                         </FormControl>
                                         <FormControl></FormControl>
                                         <FormMessage />
@@ -112,8 +113,8 @@ export default function Login() {
                                     Logging you in
                                 </Button>}
                             <div className="text-white flex flex-col">
-                                <span>DEMO username is admin</span>
-                                <span>DEMO Password is admin123</span>
+                                <span>DEMO username is {DEMO_USERNAME}</span>
+                                <span>DEMO Password is {DEMO_PASSWORD}</span>
                             </div>
                         </form>
                     </Form>

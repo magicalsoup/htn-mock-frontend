@@ -16,7 +16,7 @@ export function DayTabs({ eventDays, startDay } :
                 <div className="flex justify-between">
                     <TabsList>
                         {eventDays.map((eventDay, id) => {
-                            return <TabsTrigger value={eventDay} key={id}>{eventDay}</TabsTrigger>
+                            return <TabsTrigger className="text-lg" value={eventDay} key={id}>{eventDay}</TabsTrigger>
                         })}
                     </TabsList>
                     <SearchBar/>
