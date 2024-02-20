@@ -6,6 +6,7 @@ type TSpeaker = {
   name: string;
 };
 
+
 // The information for an event will look like so
 export type TEvent = {
   id: number;

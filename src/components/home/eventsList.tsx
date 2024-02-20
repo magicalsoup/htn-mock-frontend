@@ -1,9 +1,7 @@
 "use client"
 
 import { TEvent } from "@/app/schema/types";
-import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import { formatTimeInterval, getDayOfWeek } from "@/lib/format";
-import { Modal } from "./modal";
+import { getDayOfWeek } from "@/lib/format";
 import { Event } from "@/components/home/event"
 import {
     Dialog,
@@ -23,25 +21,25 @@ export function EventsList({day, events} : {day: string; events:TEvent []}) {
     }, [events])
 
     return (
-        <div>
+        <div className="flex flex-col gap-y-4">
             {events && events.map((event, id) => {
                 if (getDayOfWeek(event.start_time) === day) {
-                    return <div onClick={() => {
-                        setOpenModal(true)
-                        setCurrentEvent(event)
-                    }}>
-                        <Event key={id} event={event}/>
+                    return <div key={id} onClick={() => {
+                            setOpenModal(true)
+                            setCurrentEvent(event)
+                        }}>
+                        <Event  event={event}/>
                     </div>
                 }
             })}
             {openModal && <Dialog open={openModal} onOpenChange={setOpenModal}>
-                <DialogContent className="sm:max-w-md">
+                <DialogContent className="sm:max-w-xl p-12">
                     <DialogHeader>
-                        <DialogTitle>{currentEvent?.name}</DialogTitle>
-                        <DialogDescription>
-                            {currentEvent?.description}
-                        </DialogDescription>
+                        <DialogTitle className="">{currentEvent?.name}</DialogTitle>
                     </DialogHeader>
+                    <DialogDescription>
+                        {currentEvent?.description}
+                    </DialogDescription>
                 </DialogContent>
             </Dialog>}
         </div>

@@ -9,8 +9,8 @@ export function Event({event} : {event: TEvent}) {
     return (
             <Card>
                 <CardHeader>
-                <CardTitle> {event.name} </CardTitle>
-                <CardDescription>{formatTimeInterval(event.start_time, event.end_time)}</CardDescription>
+                    <CardTitle> {event.name} </CardTitle>
+                    <CardDescription>{formatTimeInterval(event.start_time, event.end_time)}</CardDescription>
                 </CardHeader>
             </Card>
     )   

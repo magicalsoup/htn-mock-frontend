@@ -6,6 +6,7 @@ import { TEvent } from "../schema/types"
 import { EventsList } from "@/components/home/eventsList"
 import { getDayOfWeek } from "@/lib/format"
 import { DayTabs } from "@/components/home/dayTabs"
+import useSession from "@/session/use-session"
 
 const API_ENDPOINT = `https://api.hackthenorth.com/v3/`
 
@@ -16,7 +17,7 @@ async function getEvents() {
 }
 
 export default function Home() {
-
+    const { session, isLoading } = useSession()
     const [events, setEvents] = useState<TEvent[]>([])
     const [eventDays, setEventDays] = useState<string[]>([])
     const [startDay, setStartDay] = useState<string>("Tuesday")
@@ -47,6 +48,7 @@ export default function Home() {
     return (
         <main className="h-screen w-screen">
             <div className="flex flex-col py-32 px-32">
+                <h1>Username: {session.username} isLoggedin: {JSON.stringify(session.isLoggedIn)}</h1>
                 <div className="flex">
                     <DayTabs events={events} eventDays={eventDays} startDay={startDay}/>
                 </div>
