@@ -31,7 +31,6 @@ export default function Login() {
 
     const { session, login, isLoading } = useSession()
     const router = useRouter()
-    const [submit, toggleSubmit] = useState(false)
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -53,14 +52,13 @@ export default function Login() {
         }
 
         login(user)
-        toggleSubmit(true)
     }
 
     useEffect(() => {
-        if (!isLoading && session.isLoggedIn && submit) {
-            router.replace("/home")
+        if (!isLoading && session.isLoggedIn) {
+            router.replace("/")
         }
-    }, [session, isLoading, submit])
+    }, [session, isLoading])
 
     return (
         <div className="bg-slate-800 h-screen w-screen">
@@ -79,7 +77,7 @@ export default function Login() {
                             name="username"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Username</FormLabel>
+                                    <FormLabel className="text-slate-400">Username</FormLabel>
                                     <FormControl>
                                         <Input placeholder="username" {...field} />
                                     </FormControl>
@@ -92,7 +90,7 @@ export default function Login() {
                                 name="password"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Password</FormLabel>
+                                        <FormLabel className="text-slate-400">Password</FormLabel>
                                         <FormControl>
                                             <Input placeholder="password" {...field} />
                                         </FormControl>
