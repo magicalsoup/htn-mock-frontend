@@ -8,6 +8,7 @@ const initialState: EventsContextType = {
     events: [],
     currentEvent: null,
     openModal: false,
+    interestedEvents: []
 }
 
 const EventsContext = createContext<EventsContextType>(initialState)
@@ -59,6 +60,42 @@ export function useEventsDispatch() {
                 filteredEvents: action.events
             }
         }
+        case EventContextActionType.SELECT_EVENT_AS_INTERESTED: {
+          if (action.event === null || action.event === undefined) {
+            return oldState
+          }
+
+          if (oldState.interestedEvents.includes(action.event)) {
+            return oldState
+          }
+
+          return {
+            ...oldState,
+            interestedEvents: [...oldState.interestedEvents, action.event]
+          }
+        }
+        case EventContextActionType.DESELECT_EVENT_AS_INTERESTED: {
+          if (action.event === null || action.event === undefined) {
+            return oldState
+          }
+          if (!oldState.interestedEvents.includes(action.event)) {
+            return oldState;
+          }
+          return {
+            ...oldState,
+            interestedEvents: oldState.interestedEvents.filter(event => event != action.event)
+          }
+        }
+        case EventContextActionType.SET_CURRENT_EVENT: {
+          if (action.event === null || action.event === undefined) {
+            return oldState
+          }
+          return {
+            ...oldState,
+            currentEvent: action.event
+          }
+        }
+        
       default: {
         throw new Error("Unknown action " + action.type);
       }

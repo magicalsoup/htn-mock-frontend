@@ -5,15 +5,18 @@ export type EventsContextType = {
     events: TEvent[]; // events queried from the API
     currentEvent: TEvent | null;
     openModal: boolean;
+    interestedEvents: TEvent[]
 }
 
 export enum EventContextActionType {
     INITIALIZE_EVENTS,
-    SELECT_EVENT_AS_INTERESTED
+    SELECT_EVENT_AS_INTERESTED,
+    DESELECT_EVENT_AS_INTERESTED,
+    SET_CURRENT_EVENT,
 }
 
 export type EventsContextAction = {
     type: EventContextActionType
     events?: TEvent[]
-    event?: TEvent
+    event?: TEvent | null
 }

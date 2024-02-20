@@ -30,7 +30,6 @@ export function Profile() {
         }
     }, [session, toggleLoggingOut])
 
-    const picksEvents = eventsState.filteredEvents;
 
 
     if (!session.isLoggedIn) {
@@ -74,7 +73,7 @@ export function Profile() {
                 </div>
                 <Collapsible open={openCollapsible} onOpenChange={toggleOpenCollapsible}>
                     <CollapsibleContent className="space-y-2">
-                    {picksEvents.map((event) => {
+                    {eventsState.interestedEvents.map((event) => {
                         return <div className="rounded-md border px-4 py-3 text-sm">
                             {event.name}
                         </div>

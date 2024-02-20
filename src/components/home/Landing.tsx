@@ -21,7 +21,7 @@ async function getEvents() {
 }
 
 export function Landing () {
-    const { session, isLoading, logout } = useSession()
+    const { session, isLoading } = useSession()
     
     const eventsDispatch = useEventsDispatch()
  
@@ -45,7 +45,7 @@ export function Landing () {
                 type: EventContextActionType.INITIALIZE_EVENTS,
                 events: [...fetchedEvents]
             })
-            // console.log(fetchedEvents)
+            console.log(fetchedEvents)
           }
           fetchEvents()
 
