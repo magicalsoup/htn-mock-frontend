@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button"
 import { SearchBar } from "@/components/home/SearchBar"
 import { useEventsDispatch, useEventsState } from "../events-context/EventContext"
 import { EventContextActionType } from "@/app/schema/events-context-types"
+import { useRouter } from "next/navigation"
+import { Profile } from "./Profile"
 
 const API_ENDPOINT = `https://api.hackthenorth.com/v3/`
 
@@ -22,12 +24,12 @@ export function Landing () {
     const { session, isLoading, logout } = useSession()
     
     const eventsDispatch = useEventsDispatch()
-    const eventsState = useEventsState() 
+ 
 
     const [events, setEvents] = useState<TEvent[]>([])
-    // const [filteredEvents, setFilteredEvents] = useState<TEvent[]>([])
     const [eventDays, setEventDays] = useState<string[]>([])
     const [startDay, setStartDay] = useState<string>("Tuesday")
+
 
     useEffect(() => {
         async function fetchEvents() {
@@ -43,10 +45,10 @@ export function Landing () {
                 type: EventContextActionType.INITIALIZE_EVENTS,
                 events: [...fetchedEvents]
             })
-
             // console.log(fetchedEvents)
           }
           fetchEvents()
+
     }, [session])
 
     useEffect(() => {
@@ -57,6 +59,8 @@ export function Landing () {
         setStartDay(newEventDays[0])
     }, [events])
 
+
+
     if (isLoading) {
       return (
         <div>Loading</div>
@@ -65,13 +69,12 @@ export function Landing () {
 
     return (
         <main className="h-screen w-screen">
-            <div className="flex flex-col py-32 px-32">
-                <SearchBar />
-                <Button type="submit" onSubmit={() => logout()}>Log out</Button>
-                <h1>Username: {session.username} isLoggedin: {JSON.stringify(session.isLoggedIn)}</h1>
-                <div className="flex">
+            <div className="flex flex-col py-32 px-32 gap-y-8"> 
+                <div className="flex gap-x-16">
                     <DayTabs eventDays={eventDays} startDay={startDay}/>
+                    <Profile/>
                 </div>
+                
             </div>
         </main>
     )

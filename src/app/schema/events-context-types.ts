@@ -8,10 +8,12 @@ export type EventsContextType = {
 }
 
 export enum EventContextActionType {
-    INITIALIZE_EVENTS
+    INITIALIZE_EVENTS,
+    SELECT_EVENT_AS_INTERESTED
 }
 
 export type EventsContextAction = {
     type: EventContextActionType
     events?: TEvent[]
+    event?: TEvent
 }

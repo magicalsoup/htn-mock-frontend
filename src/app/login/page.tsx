@@ -42,7 +42,7 @@ export default function Login() {
 
      
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         const username = values.username;
         const password = values.password;
 
@@ -51,7 +51,11 @@ export default function Login() {
             password: password
         }
 
-        login(user)
+        const response = await login(user)
+        if (!response.isLoggedIn) {
+            console.log("incorrect username or password")
+        }
+        
     }
 
     useEffect(() => {

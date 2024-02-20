@@ -7,7 +7,6 @@ import {
     Dialog,
     DialogContent,
     DialogDescription,
-    DialogFooter,
     DialogHeader,
     DialogTitle,
   } from "@/components/ui/dialog"
@@ -16,7 +15,12 @@ import { useEventsState } from "../events-context/EventContext";
 import { Button } from "../ui/button";
 import useSession from "@/session/use-session";
 import { getRelatedEvents } from "@/lib/event-data";
+import {
+    Collapsible,
+    CollapsibleContent,
+  } from "@/components/ui/collapsible"
 
+import { Badge } from "@/components/ui/badge"
 
 export function EventsList({day} : {day: string;}) {
     const [currentEvent, setCurrentEvent] = useState<TEvent | null>(null)
@@ -51,18 +55,26 @@ export function EventsList({day} : {day: string;}) {
             {openModal && <Dialog open={openModal} onOpenChange={setOpenModal}>
                 <DialogContent className="sm:max-w-xl p-12">
                     <DialogHeader>
-                        <DialogTitle className="">{currentEvent?.name}</DialogTitle>
+                        <div className="flex gap-x-4">
+                            <DialogTitle className="">{currentEvent?.name}</DialogTitle>
+                            <Badge>{currentEvent?.event_type}</Badge>
+                        </div>
                     </DialogHeader>
                     <DialogDescription>
                         {currentEvent?.description}
                     </DialogDescription>
                     
-                    {relatedEvents?.map((event) => {
-                        return <Button variant="link" onClick={() => {
-                            setOpenModal(true)
-                            setCurrentEvent(event)
-                        }}>{event.name}</Button>
-                    })}
+                    <Collapsible open={true}>
+                        <h1 className="">You should also check out </h1>
+                        <CollapsibleContent className="flex flex-col items-start">
+                            {relatedEvents?.map((event, id: number) => {
+                                return <Button variant="link" className="p-0" key={id} onClick={() => {
+                                    setOpenModal(true)
+                                    setCurrentEvent(event)
+                                }}>{event.name}</Button>
+                            })}
+                        </CollapsibleContent>
+                    </Collapsible>
                     
                 </DialogContent>
             </Dialog>}

@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
     // simulate looking up the user in db
     await sleep(250);
   } else {
-    console.log("[error]", username, password)
+    return Response.json({error: 'Incorrect username or password', ...session})
   }
 
   return Response.json(session)
