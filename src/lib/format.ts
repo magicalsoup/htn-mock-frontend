@@ -1,3 +1,5 @@
+import { TEventType } from "@/app/schema/types";
+
 const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const months = ["Janurary", "Februrary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
@@ -37,4 +39,15 @@ export function getDayOfWeek(start_time:number) {
     const date = new Date(start_time);
     const start_day = date.getDay();
     return daysOfTheWeek[start_day];
+}
+
+export function formatEventType(eventType: TEventType) {
+    switch (eventType) {
+        case "tech_talk": {
+            return "techtalk"
+        }
+        default: {
+            return eventType
+        }
+    }
 }

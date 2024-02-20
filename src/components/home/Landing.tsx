@@ -68,7 +68,7 @@ export function Landing () {
     }
 
     return (
-        <main className="h-screen w-screen">
+        <main className="h-full w-screen bg-background">
             <div className="flex flex-col py-32 px-32 gap-y-8"> 
                 <div className="flex gap-x-16">
                     <DayTabs eventDays={eventDays} startDay={startDay}/>

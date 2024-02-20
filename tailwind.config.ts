@@ -24,6 +24,9 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
+        techtalk: "hsl(var(--techtalk-badge))",
+        workshop: "hsl(var(--workshop-badge))",
+        activity: "hsl(var(--activity-badge))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

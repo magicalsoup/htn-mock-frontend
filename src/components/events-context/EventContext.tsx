@@ -95,7 +95,15 @@ export function useEventsDispatch() {
             currentEvent: action.event
           }
         }
-        
+        case EventContextActionType.CHANGE_FILTERED_EVENTS: {
+          if (action.events === undefined) {
+            return oldState
+          }
+          return {
+            ...oldState,
+            filteredEvents: action.events
+          }
+        }
       default: {
         throw new Error("Unknown action " + action.type);
       }

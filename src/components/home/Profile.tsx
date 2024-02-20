@@ -48,7 +48,7 @@ export function Profile() {
 
     return (
         <div className="flex flex-col w-96 gap-y-6">
-            <div className="flex flex-col justify-center p-4 gap-y-4 h-36 outline outline-1">
+            <div className="flex flex-col justify-center p-4 gap-y-4 h-36 outline outline-1 outline-border">
                 <div className="flex gap-x-4 items-center">
                     <Avatar>
                         <AvatarImage src="https://my.hackthenorth.com/static/media/logo.fdff3c11.svg"/>
@@ -73,8 +73,8 @@ export function Profile() {
                 </div>
                 <Collapsible open={openCollapsible} onOpenChange={toggleOpenCollapsible}>
                     <CollapsibleContent className="space-y-2">
-                    {eventsState.interestedEvents.map((event) => {
-                        return <div className="rounded-md border px-4 py-3 text-sm">
+                    {eventsState.interestedEvents.map((event, id:number) => {
+                        return <div key={id} className="rounded-md border px-4 py-3 text-sm">
                             {event.name}
                         </div>
                     })}

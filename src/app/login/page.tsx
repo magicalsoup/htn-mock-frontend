@@ -1,5 +1,5 @@
 "use client"
-
+import { ReloadIcon } from "@radix-ui/react-icons"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -16,7 +15,7 @@ import {
 import { Input } from "@/components/ui/input"
 import useSession from "@/session/use-session"
 import { User } from "@/session/lib"
-import { redirect } from "next/dist/server/api-utils"
+
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
@@ -30,6 +29,7 @@ const formSchema = z.object({
 export default function Login() {
 
     const { session, login, isLoading } = useSession()
+    const [isLoggingIn, toggleIsLoggingIn] = useState(false);
     const router = useRouter()
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -51,8 +51,12 @@ export default function Login() {
             password: password
         }
 
+        toggleIsLoggingIn(true)
+
         const response = await login(user)
+
         if (!response.isLoggedIn) {
+            toggleIsLoggingIn(false)
             console.log("incorrect username or password")
         }
         
@@ -102,7 +106,11 @@ export default function Login() {
                                         <FormMessage />
                                     </FormItem>
                             )}/>
-                            <Button type="submit" className="w-full py-6 text-lg font-bold">Log in</Button>
+                            {!isLoggingIn && <Button type="submit" className="w-full py-6 text-lg font-bold">Log in</Button>}
+                            {isLoggingIn && <Button className="w-full py-6 text-lg font-bold"disabled>
+                                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                                    Logging you in
+                                </Button>}
                         </form>
                     </Form>
                 </div>

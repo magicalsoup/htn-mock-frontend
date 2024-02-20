@@ -1,5 +1,5 @@
 // Each event will belong to one of the following types
-type TEventType = "workshop" | "activity" | "tech_talk";
+export type TEventType = "workshop" | "activity" | "tech_talk";
 type TPermission = "public" | "private";
 
 type TSpeaker = {

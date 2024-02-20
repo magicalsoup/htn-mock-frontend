@@ -6,6 +6,9 @@
 
 @layer base {
   :root {
+    --techtalk-badge: 221.2 83.2% 53.3%;
+    --workshop-badge: 142.1 76.2% 36.3%;
+    --activity-badge: 346.8 77.2% 49.8%;
     --background: 0 0% 100%;
     --foreground: 20 14.3% 4.1%;
     --card: 0 0% 100%;

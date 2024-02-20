@@ -21,7 +21,7 @@ import { getRelatedEvents } from "@/lib/event-data";
 import useSession from "@/session/use-session";
 import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
 import { EventContextActionType } from "@/app/schema/events-context-types";
-import { formatTimeInterval } from "@/lib/format";
+import { formatEventType, formatTimeInterval } from "@/lib/format";
 import { ToastAction } from "@radix-ui/react-toast";
 
 export function Modal ({openModal, setOpenModal} : 
@@ -52,13 +52,15 @@ export function Modal ({openModal, setOpenModal} :
         }
     }, [eventsState.currentEvent])
     if (currentEvent) {
+        const eventType = formatEventType(currentEvent.event_type)
         return (
             <Dialog open={openModal} onOpenChange={setOpenModal}>
                 <DialogContent className="sm:max-w-xl p-12">
                     <DialogHeader>
                         <div className="flex gap-x-4">
-                            <DialogTitle className="">{currentEvent?.name}</DialogTitle>
-                            <Badge>{currentEvent?.event_type}</Badge>
+                            <DialogTitle className="">{currentEvent.name}</DialogTitle>
+                            <Badge className={`${eventType == 'activity'? 'bg-activity' : (eventType === 'workshop'? 
+                            'bg-workshop' : 'bg-techtalk')} text-white`} variant="outline">{eventType}</Badge>
                         </div>
                     </DialogHeader>
                     <DialogDescription>

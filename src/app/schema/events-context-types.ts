@@ -13,6 +13,7 @@ export enum EventContextActionType {
     SELECT_EVENT_AS_INTERESTED,
     DESELECT_EVENT_AS_INTERESTED,
     SET_CURRENT_EVENT,
+    CHANGE_FILTERED_EVENTS,
 }
 
 export type EventsContextAction = {
