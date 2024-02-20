@@ -2,16 +2,17 @@
 
 import { TEvent } from "@/app/schema/types"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { EventsList } from "@/components/home/eventsList"
+import { EventsList } from "@/components/home/EventsList"
 
 import { useEffect, useState } from "react"
+import { useEventsState } from "../events-context/EventContext"
 
-export function DayTabs({events, eventDays, startDay} : 
-    {events: TEvent[]; eventDays: string[]; startDay: string}) {
+export function DayTabs({ eventDays, startDay } : 
+    { eventDays: string[]; startDay: string }) {
 
- 
-
-
+    const eventsState = useEventsState()
+    const events: TEvent[] = eventsState.events
+    
     return (
         <>
             <Tabs defaultValue={startDay} className="w-[768px]">
@@ -22,7 +23,7 @@ export function DayTabs({events, eventDays, startDay} :
                 </TabsList>
                 {eventDays.map((eventDay, id) => {
                     return <TabsContent value={eventDay} key={id}>
-                            <EventsList day={eventDay} events={events}></EventsList>
+                            <EventsList day={eventDay}></EventsList>
                         </TabsContent>
                     }   
                 )}
