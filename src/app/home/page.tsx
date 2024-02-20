@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react"
 import { TEvent } from "../schema/types"
 
+import { EventsList } from "@/components/home/eventsList"
+import { getDayOfWeek } from "@/lib/format"
+import { DayTabs } from "@/components/home/dayTabs"
+
 const API_ENDPOINT = `https://api.hackthenorth.com/v3/`
 
 async function getEvents() {
@@ -14,6 +18,8 @@ async function getEvents() {
 export default function Home() {
 
     const [events, setEvents] = useState<TEvent[]>([])
+    const [eventDays, setEventDays] = useState<string[]>([])
+    const [startDay, setStartDay] = useState<string>("Tuesday")
 
     useEffect(() => {
         async function fetchEvents() {
@@ -24,15 +30,27 @@ export default function Home() {
               return 1;
             });
             setEvents([...fetchedEvents]);
+            console.log(fetchedEvents)
           }
           fetchEvents()
+          
     }, [])
 
-    
+    useEffect(() => {
+        const newEventDays = Array.from(new Set (events.map((event) => {
+            return getDayOfWeek(event.start_time)
+        })))
+        setEventDays(newEventDays)
+        setStartDay(newEventDays[0])
+    }, [events])
 
     return (
-        <main>
-
+        <main className="h-screen w-screen">
+            <div className="flex flex-col py-32 px-32">
+                <div className="flex">
+                    <DayTabs events={events} eventDays={eventDays} startDay={startDay}/>
+                </div>
+            </div>
         </main>
     )
 }
