@@ -82,21 +82,20 @@ export function Modal ({openModal, setOpenModal} :
                     </Collapsible>
                     <DialogFooter>
                         <Button
-                            variant="outline"
                             onClick={() => {
                                 toast({
                                     title: 'Event has been saved',
                                     description: `From ${formatTimeInterval(currentEvent.start_time, currentEvent?.end_time)}`,
                                     action: (
-                                        <ToastAction altText="Goto schedule to undo">
-                                            <Button onClick={() => {
-                                                eventsDispatch({
-                                                    type: EventContextActionType.DESELECT_EVENT_AS_INTERESTED,
-                                                    event: currentEvent
-                                                })
-                                            }}>Undo</Button>
+                                        <ToastAction type="button" className="bg-primary text-white font-bold rounded-md p-2" onClick={() => {
+                                            eventsDispatch({
+                                                type: EventContextActionType.DESELECT_EVENT_AS_INTERESTED,
+                                                event: currentEvent
+                                            })}} altText="Goto schedule to undo">
+                                            Undo
                                         </ToastAction>
-                                    )
+                                    ),
+                                    duration: 1500
                                 })
                                 eventsDispatch({
                                     type: EventContextActionType.SELECT_EVENT_AS_INTERESTED,
