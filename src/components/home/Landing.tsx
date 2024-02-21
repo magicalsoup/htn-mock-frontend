@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import { TEvent } from "@/schema/types"
 import { getDayOfWeek } from "@/lib/format"
-import { DayTabs } from "@/components/home/DayTabs"
+import { DayTabs } from "./DayTabs"
 import useSession from "@/session/use-session"
 import { useEventsDispatch } from "../events-context/EventContext"
 import { EventContextActionType } from "@/schema/events-context-types"
