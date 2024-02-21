@@ -4,6 +4,7 @@ import { TEvent } from "@/schema/types";
 import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { formatEventType, formatTimeInterval } from "@/lib/format";
 import { Badge } from "../ui/badge";
+import { Label } from "@/components/ui/label";
 
 export function Event({event} : {event: TEvent}) {
     const eventType = formatEventType(event.event_type)
@@ -15,7 +16,16 @@ export function Event({event} : {event: TEvent}) {
                         <Badge className={`${eventType == 'activity'? 'bg-activity border-activity' : (eventType === 'workshop'? 
                             'border-workshop bg-workshop' : 'border-techtalk bg-techtalk')} text-white`} variant="outline">{eventType}</Badge>
                     </div>
-                    <CardDescription>{formatTimeInterval(event.start_time, event.end_time)}</CardDescription>
+                    <CardDescription>
+                        <div className="flex gap-x-2">
+                                {event.speakers.length > 0 && 
+                                    <span>
+                                        speakers: {event.speakers.map((speaker, id) => <Label key={id}>{speaker.name}</Label>)}
+                                    </span>} 
+                                    <span className="text-gray-400">|</span>
+                                <span>{formatTimeInterval(event.start_time, event.end_time)}</span>
+                        </div>
+                    </CardDescription>
                 </CardHeader>
             </Card>
     )   

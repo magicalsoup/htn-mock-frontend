@@ -23,6 +23,7 @@ import { useEventsDispatch, useEventsState } from "../events-context/EventContex
 import { EventContextActionType } from "@/schema/events-context-types";
 import { formatEventType, formatTimeInterval } from "@/lib/format";
 import { ToastAction } from "@radix-ui/react-toast";
+import { Label } from "../ui/label";
 
 export function Modal ({openModal, setOpenModal} : 
     { openModal: boolean; setOpenModal: Dispatch<SetStateAction<boolean>>}) {
@@ -64,11 +65,11 @@ export function Modal ({openModal, setOpenModal} :
                                 'border-workshop bg-workshop' : 'border-techtalk bg-techtalk')} text-white`} variant="outline">{eventType}</Badge>
                             </div>
                             <div className="flex gap-x-2">
-                                {/* {currentEvent.speakers.length > 0 && 
+                                {currentEvent.speakers.length > 0 && 
                                     <span>
-                                        Speakers: {currentEvent.speakers.map((speaker, id) => <span key={id}>{speaker.name}</span>)}
-                                    </span>} */}
-                                {/* <Separator orientation="vertical"/> */}
+                                        speakers: {currentEvent.speakers.map((speaker, id) => <Label key={id}>{speaker.name}</Label>)}
+                                    </span>} 
+                                    <span className="text-gray-400">|</span>
                                 <span>{formatTimeInterval(currentEvent.start_time, currentEvent.end_time)}</span>
                             </div>
                         </div>
