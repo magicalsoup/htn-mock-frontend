@@ -1,6 +1,4 @@
 "use client"
-
-import { TEvent } from "@/schema/types"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { EventsList } from "@/components/home/EventsList"
 import { SearchBar } from "./SearchBar"

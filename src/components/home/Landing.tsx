@@ -40,7 +40,7 @@ export function Landing () {
           }
           fetchEvents()
 
-    }, [session])
+    }, [session, eventsDispatch])
 
     useEffect(() => {
         const newEventDays = Array.from(new Set (events.map((event) => {

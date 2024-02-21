@@ -29,12 +29,13 @@ export function Profile() {
         if (session.isLoggedIn) {
             toggleLoggingOut(false)
         }
-    }, [session])
+    }, [session.isLoggedIn, toggleLoggingOut])
+
     useEffect(() => {
         if (loggingOut) {
             router.replace("/login")
         }
-    }, [session, toggleLoggingOut])
+    }, [loggingOut, router])
 
     if (!session.isLoggedIn) {
         return (

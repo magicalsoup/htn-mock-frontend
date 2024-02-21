@@ -28,7 +28,7 @@ export function SearchBar() {
         events: newFilteredEvents,
       })
     }
-  }, [searchParam]);
+  }, [searchParam, eventsState.events, eventsDispatch]);
   const handleChange = (e: any) => {
     setSearchParam(e.target.value)
   }

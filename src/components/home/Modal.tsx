@@ -44,7 +44,7 @@ export function Modal ({openModal, setOpenModal} :
         }
         fetchRelatedEvents();
         
-    }, [currentEvent, openModal])
+    }, [currentEvent, openModal, session.isLoggedIn])
 
     useEffect(() => {
         if (eventsState.currentEvent !== null) {
@@ -110,7 +110,7 @@ export function Modal ({openModal, setOpenModal} :
                                 type: EventContextActionType.SELECT_EVENT_AS_INTERESTED,
                                 event: currentEvent
                             })
-                        }}>I'm Interested!</Button>
+                        }}>I&#39;m Interested!</Button>
                         <Button onClick={()=> {
                             window.open(session.isLoggedIn? currentEvent.private_url : currentEvent.public_url, '_blank')
                         }}>

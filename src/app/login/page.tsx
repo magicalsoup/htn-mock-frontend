@@ -69,7 +69,7 @@ export default function Login() {
         if (!isLoading && session.isLoggedIn) {
             router.replace("/")
         }
-    }, [session, isLoading])
+    }, [session, isLoading, router])
 
     return (
         <main className="bg-slate-800 h-min-screen h-full w-screen">
@@ -80,7 +80,7 @@ export default function Login() {
                         <h1 className="text-white font-bold text-4xl">
                             Log into your account
                         </h1>
-                        <p className="text-slate-200">Procrasinate no more! It's time to hack! Take home the W!</p>
+                        <p className="text-slate-200">Procrasinate no more! It&#39;s time to hack! Take home the W!</p>
                     </div>
                     <Form {...form}>
                         <form onSubmit={form.handleSubmit(onSubmit)} method="POST" className="space-y-8">
