@@ -19,6 +19,7 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { DEMO_USERNAME, DEMO_PASSWORD } from "@/lib/constants"
 import { Label } from "@/components/ui/label"
+import { Header } from "@/components/login/Header"
 
 
 const formSchema = z.object({
@@ -44,7 +45,6 @@ export default function Login() {
         },
     })
      
-    // 2. Define a submit handler.
     async function onSubmit(values: z.infer<typeof formSchema>) {
         const username = values.username;
         const password = values.password;
@@ -72,9 +72,10 @@ export default function Login() {
     }, [session, isLoading])
 
     return (
-        <div className="bg-slate-800 h-full w-screen">
-            <div className="flex flex-col justify-center items-center py-32 px-32">
-                <div className="flex flex-col w-[480px] gap-y-14"> {/*login box*/}
+        <main className="bg-slate-800 h-min-screen h-full w-screen">
+            <Header/>
+            <div className="flex flex-col justify-center items-center py-24 px-32">
+                <div className="flex flex-col w-[480px] gap-y-14"> 
                     <div className="flex flex-col gap-y-4">
                         <h1 className="text-white font-bold text-4xl">
                             Log into your account
@@ -125,6 +126,6 @@ export default function Login() {
                     </Form>
                 </div>
             </div>
-        </div>
+        </main>
     )
 }

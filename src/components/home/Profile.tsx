@@ -3,7 +3,8 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
+import HTN_LOGO from "@/static/htn-icon.jpg"
 import {
     Collapsible,
     CollapsibleContent,
@@ -13,9 +14,10 @@ import { ChevronsUpDown } from "lucide-react";
 import { X } from "lucide-react"
 import { EventContextActionType } from "@/schema/events-context-types";
 import { formatTimeInterval } from "@/lib/format";
+import { Badge } from "../ui/badge";
 
 export function Profile() {
-    const { session, isLoading, logout } = useSession()
+    const { session, logout } = useSession()
     const [loggingOut, toggleLoggingOut] = useState(false)
     const [openCollapsible, toggleOpenCollapsible] = useState(true)
     
@@ -49,14 +51,16 @@ export function Profile() {
     }
 
     return (
-        <div className="flex flex-col w-96 gap-y-6">
+        <div className="flex flex-col w-80 gap-y-6">
+            <h1 className="text-3xl font-bold">Hacker profile</h1>
             <div className="flex flex-col justify-center p-4 gap-y-4 h-36 outline outline-1 outline-border rounded-md">
                 <div className="flex gap-x-4 items-center">
                     <Avatar>
-                        <AvatarImage src="https://my.hackthenorth.com/static/media/logo.fdff3c11.svg"/>
+                        <AvatarImage src={HTN_LOGO.src}/>
                         <AvatarFallback>JD</AvatarFallback>
                     </Avatar>
                     <Label>{session.username}</Label>
+                    <Badge variant="outline">Hacker</Badge>
                 </div>
                 <Button onClick={() => {
                     toggleLoggingOut(true)
@@ -81,7 +85,7 @@ export function Profile() {
                                 <span className="text-xs font-bold">{event.name}</span>
                                 <span className="text-xs">{formatTimeInterval(event.start_time, event.end_time)}</span>
                             </div>
-                            <Button variant="outline" onClick={() => {
+                            <Button variant="outline" className="hover:bg-gray-200" onClick={() => {
                                     eventsDispatch({
                                         type: EventContextActionType.DESELECT_EVENT_AS_INTERESTED,
                                         event: event

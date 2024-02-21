@@ -1,13 +1,10 @@
 "use client"
 
-import { TEvent } from "@/schema/types";
 import { getDayOfWeek } from "@/lib/format";
 import { Event } from "@/components/home/Event"
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
-import useSession from "@/session/use-session";
-import { getRelatedEvents } from "@/lib/event-data";
 import { Modal } from "@/components/home/Modal";
 import { EventContextActionType } from "@/schema/events-context-types";
 
