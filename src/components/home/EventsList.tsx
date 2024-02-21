@@ -1,7 +1,7 @@
 "use client"
 
 import { getDayOfWeek } from "@/lib/format";
-import { Event } from "./Events"
+import { Event } from "./Event"
 
 import { useState } from "react";
 import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
