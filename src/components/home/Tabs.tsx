@@ -1,6 +1,6 @@
 "use client"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { EventsList } from "./EventsList"
+import { EventsList } from "./EventList"
 import { SearchBar } from "./SearchBar"
 
 
