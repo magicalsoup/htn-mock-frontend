@@ -31,7 +31,7 @@ const formSchema = z.object({
 
 export default function Login() {
 
-    const { session, login, isLoading } = useSession()
+    const { login } = useSession()
     const [isLoggingIn, toggleIsLoggingIn] = useState(false);
     const [showLoginError, toggleShowLoginError] = useState(false)
 
@@ -55,21 +55,22 @@ export default function Login() {
         }
 
         toggleIsLoggingIn(true)
-        
         const response = await login(user)
 
         if (!response.isLoggedIn) {
             toggleIsLoggingIn(false)
             toggleShowLoginError(true)
-        } 
-        
+        } else {
+            router.push("/");
+        }
     }
 
-    useEffect(() => {
-        if (!isLoading && session.isLoggedIn) {
-            router.replace("/")
-        }
-    }, [session, isLoading, router])
+    // use middleware instead
+    // useEffect(() => {
+    //     if (!isLoading && session.isLoggedIn) {
+    //         router.replace("/")
+    //     }
+    // }, [session, isLoading, router])
 
     return (
         <main className="bg-slate-800 h-screen w-screen">
@@ -112,7 +113,7 @@ export default function Login() {
                             )}/>
                             <div className="flex flex-col gap-y-2">
                                 {showLoginError && <Label className="text-destructive">Incorrect username or password</Label>}
-                                {!isLoggingIn && <Button type="submit" className="bg-gradient-to-r from-cyan-500 to-amber-300 w-full py-6 text-lg font-bold">Log in</Button>}
+                                {!isLoggingIn && <Button type="submit" className="bg-gradient-to-r from-cyan-500 to-amber-300 hover:from-cyan-600 hover:to-amber-400 w-full py-6 text-lg font-bold">Log in</Button>}
                                 {isLoggingIn && <Button className="bg-gradient-to-r from-cyan-500 to-amber-300 w-full py-6 text-lg font-bold"disabled>
                                     <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                                         Logging you in

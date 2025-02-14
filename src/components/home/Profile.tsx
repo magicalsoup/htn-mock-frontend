@@ -9,7 +9,7 @@ import {
     Collapsible,
     CollapsibleContent,
   } from "@/components/ui/collapsible"
-import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
+import { useEventsDispatch, useEventsState } from "../../lib/events-context/EventContext";
 import { ChevronsUpDown } from "lucide-react";
 import { X } from "lucide-react"
 import { EventContextActionType } from "@/schema/events-context-types";

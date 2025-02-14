@@ -1,15 +1,15 @@
 "use client"
 
 import { TEvent } from "@/schema/types";
-import { Card, CardDescription, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatEventType, formatTimeInterval } from "@/lib/format";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { Label } from "@/components/ui/label";
 
 export function Event({event} : {event: TEvent}) {
     const eventType = formatEventType(event.event_type)
     return (
-            <Card>
+            <Card className="cursor-pointer hover:shadow-lg">
                 <CardHeader>
                     <div className="flex gap-x-4">
                         <CardTitle> {event.name}</CardTitle>

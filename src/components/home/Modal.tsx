@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button";
 import { getRelatedEvents } from "@/lib/event-data";
 import useSession from "@/session/use-session";
-import { useEventsDispatch, useEventsState } from "@/components/events-context/EventContext";
+import { useEventsDispatch, useEventsState } from "@/lib/events-context/EventContext";
 import { EventContextActionType } from "@/schema/events-context-types";
 import { formatEventType, formatTimeInterval } from "@/lib/format";
 import { ToastAction } from "@radix-ui/react-toast";
@@ -91,7 +91,7 @@ export function Modal ({openModal, setOpenModal} :
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button variant="secondary" className="border border-border  hover:bg-slate-200" onClick={() => {
+                        {session.isLoggedIn && <Button variant="secondary" className="border border-border  hover:bg-slate-200" onClick={() => {
                             toast({
                                 title: 'Event has been saved',
                                 description: `From ${formatTimeInterval(currentEvent.start_time, currentEvent?.end_time)}`,
@@ -110,11 +110,9 @@ export function Modal ({openModal, setOpenModal} :
                                 type: EventContextActionType.SELECT_EVENT_AS_INTERESTED,
                                 event: currentEvent
                             })
-                        }}>I&#39;m Interested!</Button>
-                        <Button onClick={()=> {
-                            window.open(session.isLoggedIn? currentEvent.private_url : currentEvent.public_url, '_blank')
-                        }}>
-                            Link
+                        }}>I&#39;m Interested!</Button>}
+                        <Button onClick={()=> window.open(session.isLoggedIn? currentEvent.private_url : currentEvent.public_url, '_blank')}>
+                            Event Link
                         </Button>
                     </DialogFooter>
                 </DialogContent>

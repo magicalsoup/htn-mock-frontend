@@ -2,7 +2,7 @@
 
 import { Input } from "@/components/ui/input"
 import { useEffect, useState } from "react";
-import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
+import { useEventsDispatch, useEventsState } from "../../lib/events-context/EventContext";
 import { EventContextActionType } from "@/schema/events-context-types";
 import { formatEventType } from "@/lib/format";
 

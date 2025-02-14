@@ -5,7 +5,7 @@ import { TEvent } from "@/schema/types"
 import { getDayOfWeek } from "@/lib/format"
 import { DayTabs } from "./DayTabs"
 import useSession from "@/session/use-session"
-import { useEventsDispatch } from "../events-context/EventContext"
+import { useEventsDispatch } from "@/lib/events-context/EventContext"
 import { EventContextActionType } from "@/schema/events-context-types"
 import { Profile } from "./Profile"
 import { Loading } from "./Loading"
@@ -48,7 +48,7 @@ export function Landing () {
         setEventDays(newEventDays)
         setStartDay(newEventDays[0])
     }, [events])
-
+    
     if (isLoading) {
         return <Loading/>
     }
