@@ -30,16 +30,15 @@ export function Landing () {
               }
               return 1;
             }).filter((event: TEvent) => event.permission === "public" || session.isLoggedIn)
+            
             setEvents([...fetchedEvents])
 
             eventsDispatch({
                 type: EventContextActionType.INITIALIZE_EVENTS,
                 events: [...fetchedEvents]
             })
-            console.log(fetchedEvents)
           }
           fetchEvents()
-
     }, [session, eventsDispatch])
 
     useEffect(() => {

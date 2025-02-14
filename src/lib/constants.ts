@@ -1,2 +1,2 @@
-export const DEMO_USERNAME = "admin"
-export const DEMO_PASSWORD = "admin123"
+export const DEMO_USERNAME = "hacker"
+export const DEMO_PASSWORD = "htn2025"

@@ -63,9 +63,10 @@ export function Profile() {
                     <Label>{session.username}</Label>
                     <Badge variant="outline">Hacker</Badge>
                 </div>
-                <Button onClick={() => {
+                <Button onClick={async () => {
                     toggleLoggingOut(true)
-                    logout()
+                    await logout()
+                    router.push("/login")
                 }}>Log out</Button>
             </div>
             <div className="flex flex-col">

@@ -1,11 +1,15 @@
+"use client"
+
 import Image from "next/image"
 import HTN_LOGO from "@/static/htn-icon.jpg"
 import { Label } from "@/components/ui/label"
+import { useRouter } from "next/navigation"
 export function Header() {
+    const router = useRouter();
     return (
         <div className="flex items-center gap-x-8 px-16 py-8">
-            <Image width={50} height={50} src={HTN_LOGO} alt="failed"/>
-            <Label className="text-xl font-bold">Hack the South</Label>
+            <Image className="cursor-pointer" width={50} height={50} src={HTN_LOGO} alt="failed" onClick={() => router.push("/")}/>
+            <Label className="cursor-pointer text-xl font-bold" onClick={() => router.push("/")}>Hack the South</Label>
         </div>
     )
 }

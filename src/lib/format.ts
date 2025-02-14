@@ -27,10 +27,10 @@ export function formatUnixTimeStamp(unix_timestamp: number) {
 // returns a formated interval
 export function formatTimeInterval(start_time:number, end_time:number) {
 
-    const start_date = new Date(start_time);
-    // const end_date = new Date(end_time);
+    // const start_date = new Date(start_time);
+    // // const end_date = new Date(end_time);
 
-    // const month = months[start_date.getMonth()]; // its sane to assume the event happens in the same month
+    // // const month = months[start_date.getMonth()]; // its sane to assume the event happens in the same month
 
     return `${formatUnixTimeStamp(start_time)} to ${formatUnixTimeStamp(end_time)}`;
 }

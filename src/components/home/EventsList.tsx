@@ -4,7 +4,7 @@ import { getDayOfWeek } from "@/lib/format";
 import { Event } from "./Event"
 
 import { useState } from "react";
-import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
+import { useEventsDispatch, useEventsState } from "@/components/events-context/EventContext";
 import { Modal } from "./Modal";
 import { EventContextActionType } from "@/schema/events-context-types";
 

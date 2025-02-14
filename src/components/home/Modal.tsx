@@ -10,20 +10,15 @@ import {
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useToast } from "@/components/ui/use-toast"
 import { TEvent } from "@/schema/types";
-// import {
-//     Collapsible,
-//     CollapsibleContent,
-//   } from "@/components/ui/collapsible"
-
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button";
 import { getRelatedEvents } from "@/lib/event-data";
 import useSession from "@/session/use-session";
-import { useEventsDispatch, useEventsState } from "../events-context/EventContext";
+import { useEventsDispatch, useEventsState } from "@/components/events-context/EventContext";
 import { EventContextActionType } from "@/schema/events-context-types";
 import { formatEventType, formatTimeInterval } from "@/lib/format";
 import { ToastAction } from "@radix-ui/react-toast";
-import { Label } from "../ui/label";
+import { Label } from "@/components/ui/label";
 
 export function Modal ({openModal, setOpenModal} : 
     { openModal: boolean; setOpenModal: Dispatch<SetStateAction<boolean>>}) {
@@ -61,15 +56,19 @@ export function Modal ({openModal, setOpenModal} :
                         <div className="flex flex-col">
                             <div className="flex gap-x-4">
                                 <DialogTitle className="">{currentEvent.name}</DialogTitle>
-                                <Badge className={`${eventType == 'activity'? 'bg-activity bordeer-activity' : (eventType === 'workshop'? 
-                                'border-workshop bg-workshop' : 'border-techtalk bg-techtalk')} text-white`} variant="outline">{eventType}</Badge>
+                                <Badge className={`${eventType == 'activity'? 'bg-activity border-activity' : 
+                                        (eventType === 'workshop'? 'border-workshop bg-workshop' : 'border-techtalk bg-techtalk')} text-white`} 
+                                        variant="outline">
+                                    {eventType}
+                                </Badge>
                             </div>
                             <div className="flex gap-x-2">
-                                {currentEvent.speakers.length > 0 && 
+                                {currentEvent.speakers.length > 0 && <>
                                     <span>
                                         speakers: {currentEvent.speakers.map((speaker, id) => <Label key={id}>{speaker.name}</Label>)}
-                                    </span>} 
+                                    </span>
                                     <span className="text-gray-400">|</span>
+                                </>} 
                                 <span>{formatTimeInterval(currentEvent.start_time, currentEvent.end_time)}</span>
                             </div>
                         </div>

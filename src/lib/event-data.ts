@@ -10,7 +10,6 @@ export async function getEvent(id: number) : Promise<TEvent> {
 }
 
 // TODO cache related events
-
 export async function getRelatedEvents(event:TEvent, isLoggedIn:boolean | undefined) : Promise<TEvent[]> {
     // admittedly, this could get slow if there are a ton of related events, but should be very unlikely
     const fetchedEvents = await 

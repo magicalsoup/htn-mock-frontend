@@ -19,7 +19,7 @@ import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { DEMO_USERNAME, DEMO_PASSWORD } from "@/lib/constants"
 import { Label } from "@/components/ui/label"
-import { Header } from "../../components/login/Header"
+import { Header } from "@/components/login/Header"
 
 
 const formSchema = z.object({
@@ -72,7 +72,7 @@ export default function Login() {
     }, [session, isLoading, router])
 
     return (
-        <main className="bg-slate-800 h-min-screen h-full w-screen">
+        <main className="bg-slate-800 h-screen w-screen">
             <Header/>
             <div className="flex flex-col justify-center items-center py-24 px-32">
                 <div className="flex flex-col w-[480px] gap-y-14"> 
