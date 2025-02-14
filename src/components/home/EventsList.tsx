@@ -1,11 +1,11 @@
 "use client"
 
 import { getDayOfWeek } from "@/lib/format";
-import { Event } from "./Event"
+import { Event } from "@/components/home/Event"
 
 import { useState } from "react";
 import { useEventsDispatch, useEventsState } from "@/lib/events-context/EventContext";
-import { Modal } from "./Modal";
+import { Modal } from "@/components/home/Modal";
 import { EventContextActionType } from "@/schema/events-context-types";
 
 

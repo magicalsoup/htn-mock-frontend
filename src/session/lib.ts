@@ -19,7 +19,7 @@ export const defaultSession: SessionData = {
 
 export const sessionOptions: SessionOptions = {
   password: process.env.SECRET_COOKIE_PASSWORD as string,
-  cookieName: "hackthenorthfrontendchallenge2024",
+  cookieName: process.env.LOGIN_COOKIE_NAME as string,
   cookieOptions: {
     // secure only works in `https` environments
     // if your localhost is not on `https`, then use: `secure: process.env.NODE_ENV === "production"`

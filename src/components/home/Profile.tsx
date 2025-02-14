@@ -14,7 +14,7 @@ import { ChevronsUpDown } from "lucide-react";
 import { X } from "lucide-react"
 import { EventContextActionType } from "@/schema/events-context-types";
 import { formatTimeInterval } from "@/lib/format";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 export function Profile() {
     const { session, logout } = useSession()

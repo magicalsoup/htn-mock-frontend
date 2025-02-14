@@ -3,12 +3,12 @@
 import { useEffect, useState } from "react"
 import { TEvent } from "@/schema/types"
 import { getDayOfWeek } from "@/lib/format"
-import { DayTabs } from "./DayTabs"
+import { DayTabs } from "@/components/home/DayTabs"
 import useSession from "@/session/use-session"
 import { useEventsDispatch } from "@/lib/events-context/EventContext"
 import { EventContextActionType } from "@/schema/events-context-types"
-import { Profile } from "./Profile"
-import { Loading } from "./Loading"
+import { Profile } from "@/components/home/Profile"
+import { Loading } from "@/components/home/Loading"
 import { getEvents } from "@/lib/event-data"
 
 export function Landing () {
@@ -48,7 +48,7 @@ export function Landing () {
         setEventDays(newEventDays)
         setStartDay(newEventDays[0])
     }, [events])
-    
+
     if (isLoading) {
         return <Loading/>
     }

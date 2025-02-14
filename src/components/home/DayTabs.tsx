@@ -1,7 +1,7 @@
 "use client"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { EventsList } from "./EventsList"
-import { SearchBar } from "./SearchBar"
+import { EventsList } from "@/components/home/EventsList"
+import { SearchBar } from "@/components/home/SearchBar"
 
 
 export function DayTabs({ eventDays, startDay } : 
