@@ -16,10 +16,8 @@ export function Landing () {
     
     const eventsDispatch = useEventsDispatch()
  
-
     const [events, setEvents] = useState<TEvent[]>([])
     const [eventDays, setEventDays] = useState<string[]>([])
-    const [startDay, setStartDay] = useState<string>("Tuesday")
 
 
     useEffect(() => {
@@ -46,7 +44,6 @@ export function Landing () {
             return getDayOfWeek(event.start_time)
         })))
         setEventDays(newEventDays)
-        setStartDay(newEventDays[0])
     }, [events])
 
     if (isLoading) {
@@ -57,7 +54,7 @@ export function Landing () {
         <main className="h-full w-screen bg-background">
             <div className="flex flex-col items-center py-32 px-32 gap-y-8"> 
                 <div className="flex gap-x-16">
-                    <DayTabs eventDays={eventDays} startDay={startDay}/>
+                    <DayTabs eventDays={eventDays}/>
                     <Profile />
                 </div>
             </div>
