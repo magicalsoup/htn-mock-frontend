@@ -15,11 +15,15 @@ import { X } from "lucide-react"
 import { EventContextActionType } from "@/schema/events-context-types";
 import { formatTimeInterval } from "@/lib/format";
 import { Badge } from "@/components/ui/badge";
+import { LARGE_SCREEN_PX_SIZE } from "@/lib/constants";
+import { useWindowSize } from "@/lib/utils";
 
 export function Profile() {
     const { session, logout } = useSession()
     const [loggingOut, toggleLoggingOut] = useState(false)
     const [openCollapsible, toggleOpenCollapsible] = useState(true)
+
+    const { width } = useWindowSize()
     
     const router = useRouter()
     const eventsState = useEventsState()
@@ -71,7 +75,7 @@ export function Profile() {
             </div>
             <div className="flex flex-col">
                 <div className="flex">
-                <h1 className="text-xl font-bold">Your picks</h1>
+                <h1 className="text-xl font-bold">Your Activities</h1>
                     <Button variant="ghost" size="sm" className="w-9 p-0" onClick={
                         () => toggleOpenCollapsible((old) => !old)
                     }>
@@ -81,11 +85,11 @@ export function Profile() {
                 </div>
                 <Collapsible open={openCollapsible} onOpenChange={toggleOpenCollapsible}>
                     <CollapsibleContent className="space-y-2">
-                    {eventsState.interestedEvents.map((event, id:number) => {
+                    {eventsState.interestedEvents && eventsState.interestedEvents.length > 0 ? eventsState.interestedEvents.map((event, id:number) => {
                         return <div key={id} className="flex justify-between items-center rounded-md border px-4 py-3 text-sm">
                             <div className="flex flex-col">
                                 <span className="text-xs font-bold">{event.name}</span>
-                                <span className="text-xs">{formatTimeInterval(event.start_time, event.end_time)}</span>
+                                <span className="text-xs">{formatTimeInterval(event.start_time, event.end_time, false)}</span>
                             </div>
                             <Button variant="outline" className="hover:bg-gray-200" onClick={() => {
                                     eventsDispatch({
@@ -95,7 +99,7 @@ export function Profile() {
                                 <X/>
                             </Button>
                         </div>
-                    })}
+                    }) : <div className="p-16"> No picks yet! Add an event to the calendar to save it here. </div>}
                     </CollapsibleContent>
                 </Collapsible>
             </div>

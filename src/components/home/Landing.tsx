@@ -10,6 +10,8 @@ import { EventContextActionType } from "@/schema/events-context-types"
 import { Profile } from "@/components/home/Profile"
 import { Loading } from "@/components/home/Loading"
 import { getEvents } from "@/lib/event-data"
+import { useWindowSize } from "@/lib/utils"
+import { LARGE_SCREEN_PX_SIZE } from "@/lib/constants"
 
 export function Landing () {
     const { session, isLoading } = useSession()
@@ -19,6 +21,7 @@ export function Landing () {
     const [events, setEvents] = useState<TEvent[]>([])
     const [eventDays, setEventDays] = useState<string[]>([])
 
+    const { width } = useWindowSize();
 
     useEffect(() => {
         async function fetchEvents() {
@@ -52,12 +55,13 @@ export function Landing () {
 
     return (
         <main className="h-full w-screen bg-background">
-            <div className="flex flex-col items-center py-32 px-32 gap-y-8"> 
+            <div className="flex flex-col items-center py-8 px-8 lg:py-32 lg:px-32 gap-y-8"> 
                 <div className="flex gap-x-16">
                     <DayTabs eventDays={eventDays}/>
-                    <Profile />
+                    {width >= LARGE_SCREEN_PX_SIZE && <Profile />}
                 </div>
             </div>
         </main>
     )
+    
 }

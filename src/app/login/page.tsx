@@ -65,26 +65,19 @@ export default function Login() {
         }
     }
 
-    // use middleware instead
-    // useEffect(() => {
-    //     if (!isLoading && session.isLoggedIn) {
-    //         router.replace("/")
-    //     }
-    // }, [session, isLoading, router])
-
     return (
         <main className="bg-slate-800 h-screen w-screen">
             <Header/>
-            <div className="flex flex-col justify-center items-center py-24 px-32">
-                <div className="flex flex-col w-[480px] gap-y-14"> 
-                    <div className="flex flex-col gap-y-4">
-                        <h1 className="text-white font-bold text-4xl">
+            <div className="flex flex-col justify-center items-center px-8 py-8 md:py-24 md:px-32">
+                <div className="flex flex-col w-full md:w-[480px] gap-y-8 md:gap-y-14"> 
+                    <div className="flex flex-col gap-y-1 md:gap-y-4">
+                        <h1 className="text-white font-bold text-2xl md:text-4xl">
                             Log into your account
                         </h1>
                         <p className="text-slate-200">Procrasinate no more! It&#39;s time to hack! Take home the W!</p>
                     </div>
                     <Form {...form}>
-                        <form onSubmit={form.handleSubmit(onSubmit)} method="POST" className="space-y-8">
+                        <form onSubmit={form.handleSubmit(onSubmit)} method="POST" className="space-y-4 md:space-y-8">
                             <FormField
                             control={form.control}
                             name="username"

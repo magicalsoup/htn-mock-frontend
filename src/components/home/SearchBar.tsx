@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useEventsDispatch, useEventsState } from "@/lib/events-context/EventContext";
 import { EventContextActionType } from "@/schema/events-context-types";
 import { formatEventType } from "@/lib/format";
+import { escapeSpecialChars } from "@/lib/utils";
 
 export function SearchBar() {
   const [searchParam, setSearchParam] = useState("")
@@ -30,9 +31,9 @@ export function SearchBar() {
     }
   }, [searchParam, eventsState.events, eventsDispatch]);
   const handleChange = (e: any) => {
-    setSearchParam(e.target.value)
+    setSearchParam(escapeSpecialChars(e.target.value))
   }
   return (
-    <Input placeholder="Filter for an event" className="w-96" onChange={handleChange}/>
+    <Input placeholder="Filter for an event" className="w-full md:w-52 lg:w-96" onChange={handleChange}/>
   )
 }
