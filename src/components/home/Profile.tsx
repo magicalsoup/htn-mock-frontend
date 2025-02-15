@@ -1,3 +1,5 @@
+"use client"
+
 import useSession from "@/session/use-session";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
