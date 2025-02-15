@@ -5,14 +5,14 @@ import HTN_LOGO from "@/static/htn-icon.jpg"
 import { Label } from "@/components/ui/label"
 import { useRouter } from "next/navigation"
 import { useWindowSize } from "@/lib/utils"
-import { LARGE_SCREEN_PX_SIZE, TABLET_WIDTH_PX_SIZE } from "@/lib/constants"
+import { LARGE_SCREEN_PX_SIZE } from "@/lib/constants"
 import useSession from "@/session/use-session"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdownmenu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "../ui/button"
 export function Header() {
     const router = useRouter();
-    const { width } = useWindowSize();
+    const { width } = useWindowSize();;
     const { session, logout } = useSession();
 
     if (width <= LARGE_SCREEN_PX_SIZE) { // mobile 

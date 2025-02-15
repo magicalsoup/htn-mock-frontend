@@ -32,7 +32,7 @@ export function Modal ({openModal, setOpenModal} :
     const eventsState = useEventsState()
 
     const [relatedEvents, setRelatedEvents] = useState<TEvent[] | null>(null)
-    const { width } = useWindowSize();
+    const { width } = useWindowSize();;
 
     useEffect(() => {
         async function fetchRelatedEvents() {

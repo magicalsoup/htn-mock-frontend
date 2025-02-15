@@ -25,7 +25,7 @@ export function Profile() {
     const [loggingOut, toggleLoggingOut] = useState(false)
     const [openCollapsible, toggleOpenCollapsible] = useState(true)
 
-    const { width } = useWindowSize()
+    const { width } = useWindowSize();
     
     const router = useRouter()
     const eventsState = useEventsState()

@@ -21,7 +21,7 @@ export function Landing () {
     const [events, setEvents] = useState<TEvent[]>([])
     const [eventDays, setEventDays] = useState<string[]>([])
 
-    const { width } = useWindowSize();
+    const { width } = useWindowSize();;
 
     useEffect(() => {
         async function fetchEvents() {
